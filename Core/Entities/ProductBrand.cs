@@ -8,8 +8,6 @@ namespace Core.Entities
 {
     public class ProductBrand : BaseEntity
     {
-       [Key]
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
