@@ -5,6 +5,7 @@ using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -30,6 +31,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [EnableCors("CorsPolicy")]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts([FromQuery]ProductSpecParams productParams) 
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
@@ -46,6 +48,7 @@ namespace API.Controllers
         }
         
         [HttpGet("{id}")]
+        [EnableCors("CorsPolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id) 
@@ -60,12 +63,14 @@ namespace API.Controllers
         }
 
         [HttpGet("brands")] 
+        [EnableCors("CorsPolicy")]
         public async Task<IReadOnlyList<ProductBrand>> GetProductBrands() 
         {
             return await _productBrandRepo.ListAllAsync();
         }
 
         [HttpGet("types")] 
+        [EnableCors("CorsPolicy")]
         public async Task<IReadOnlyList<ProductType>> GetProductTypes() 
         {
             return await _productTypeRepo.ListAllAsync();
