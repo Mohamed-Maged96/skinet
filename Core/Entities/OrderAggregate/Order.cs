@@ -19,7 +19,7 @@ namespace Core.Entities.OrderAggregate
             Subtotal = subtotal;
         }
         public string BuyerEmail { get; set; }
-        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
+        public DateTime OrderDate { get; set; } = DateTime.Now;
         public Address ShipToAddress { get; set; }
         public DeliveryMethod DeliveryMethod { get; set; }
         public IReadOnlyList<OrderItem> OrderItems { get; set; }
